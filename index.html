@@ -1,1 +1,352 @@
-<!-- Portfolio deployment entry point; full source will be synchronized after initial branch creation. -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a1424" />
+  <meta name="description" content="Vijay Kashyap C — Computer Science Engineering student, builder, market enthusiast and lifelong learner based in Bengaluru, India." />
+  <meta property="og:title" content="Vijay Kashyap C | Portfolio" />
+  <meta property="og:description" content="Computer Science Engineering student. Curious by nature. Building with purpose." />
+  <meta property="og:type" content="website" />
+  <title>Vijay Kashyap C | Portfolio</title>
+  <style>
+    :root {
+      --ink: #101a2b;
+      --ink-2: #233249;
+      --muted: #68768a;
+      --paper: #f5f3ee;
+      --paper-2: #ebe9e2;
+      --white: #fffefa;
+      --navy: #0a1424;
+      --navy-2: #111f34;
+      --blue: #77b9ff;
+      --lime: #d7fb71;
+      --line: rgba(16, 26, 43, .13);
+      --radius: 24px;
+      --shadow: 0 24px 70px rgba(10, 20, 36, .12);
+      --max: 1160px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    ::selection { background: var(--lime); color: var(--navy); }
+    .wrap { width: min(var(--max), calc(100% - 48px)); margin-inline: auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-size: .76rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 25px; height: 1px; background: currentColor; }
+    .site-header { position: fixed; inset: 0 0 auto; z-index: 50; border-bottom: 1px solid rgba(255,255,255,.08); color: white; transition: background .25s, box-shadow .25s, border-color .25s; }
+    .site-header.scrolled { background: rgba(10,20,36,.94); backdrop-filter: blur(16px); box-shadow: 0 8px 30px rgba(0,0,0,.12); border-color: rgba(255,255,255,.1); }
+    .nav { height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-size: .95rem; font-weight: 850; letter-spacing: -.03em; }
+    .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid rgba(215,251,113,.75); border-radius: 11px; color: var(--lime); font-size: .78rem; letter-spacing: -.04em; }
+    .nav-links { display: flex; align-items: center; gap: clamp(16px, 2.5vw, 32px); color: rgba(255,255,255,.72); font-size: .82rem; font-weight: 650; }
+    .nav-links a { transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--lime); }
+    .nav-cta { border: 1px solid rgba(215,251,113,.5); padding: 9px 15px; border-radius: 999px; color: var(--lime) !important; }
+    .menu-toggle { display: none; color: white; border: 1px solid rgba(255,255,255,.2); background: transparent; width: 42px; height: 42px; border-radius: 13px; cursor: pointer; }
+
+    .hero { min-height: 760px; padding: 148px 0 88px; color: white; background: radial-gradient(ellipse at 78% 17%, rgba(57,111,163,.34), transparent 31%), radial-gradient(ellipse at 15% 88%, rgba(75,105,61,.19), transparent 36%), linear-gradient(125deg, #081221 0%, #0c1a2d 57%, #14243a 100%); position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .14; background-image: linear-gradient(rgba(255,255,255,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.14) 1px, transparent 1px); background-size: 68px 68px; mask-image: linear-gradient(90deg, transparent, black 70%); }
+    .hero::after { content: ""; position: absolute; width: 580px; height: 580px; right: -170px; top: 130px; border: 1px solid rgba(119,185,255,.17); border-radius: 50%; box-shadow: 0 0 0 55px rgba(119,185,255,.025), 0 0 0 110px rgba(119,185,255,.02); }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.18fr .82fr; gap: 7vw; align-items: center; }
+    .hero .eyebrow { color: var(--lime); }
+    .availability { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 24px; color: rgba(255,255,255,.73); font-size: .8rem; }
+    .availability-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 5px rgba(215,251,113,.12); }
+    h1 { max-width: 760px; margin: 18px 0 22px; font-size: clamp(3.8rem, 7.7vw, 7.3rem); line-height: .94; letter-spacing: -.075em; font-weight: 850; }
+    h1 .accent { color: var(--lime); }
+    .hero-copy { max-width: 600px; color: rgba(255,255,255,.7); font-size: clamp(1rem, 1.45vw, 1.15rem); line-height: 1.8; }
+    .hero-copy strong { color: white; font-weight: 650; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 20px; border-radius: 999px; font-size: .87rem; font-weight: 800; transition: transform .2s, background .2s, border-color .2s; cursor: pointer; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { background: var(--lime); color: var(--navy); border: 1px solid var(--lime); }
+    .btn-primary:hover { background: #e4ff9c; }
+    .btn-ghost { border: 1px solid rgba(255,255,255,.24); color: white; }
+    .btn-ghost:hover { border-color: rgba(215,251,113,.8); }
+    .hero-meta { display: flex; gap: 23px; flex-wrap: wrap; margin-top: 44px; color: rgba(255,255,255,.52); font-size: .77rem; }
+    .hero-meta span { display: inline-flex; gap: 8px; align-items: center; }
+    .hero-meta b { color: rgba(255,255,255,.92); font-weight: 650; }
+    .hero-visual { display: flex; justify-content: center; position: relative; }
+    .portrait-frame { position: relative; width: min(100%, 360px); aspect-ratio: .78; padding: 11px; border: 1px solid rgba(215,251,113,.36); border-radius: 190px 190px 26px 26px; background: linear-gradient(150deg, rgba(255,255,255,.14), rgba(255,255,255,.025)); box-shadow: 0 28px 80px rgba(0,0,0,.34); transform: rotate(2deg); }
+    .portrait-frame::before { content: ""; position: absolute; inset: 22px -18px -18px 22px; border: 1px solid rgba(119,185,255,.27); border-radius: inherit; z-index: -1; }
+    .portrait-frame img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 25%; border-radius: 180px 180px 17px 17px; filter: saturate(.82) contrast(1.03); }
+    .portrait-tag { position: absolute; left: -34px; bottom: 53px; background: var(--lime); color: var(--navy); padding: 13px 16px; border-radius: 13px; font-size: .72rem; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; transform: rotate(-5deg); box-shadow: 0 14px 30px rgba(0,0,0,.25); }
+    .orbit-label { position: absolute; top: 20px; right: -30px; color: rgba(255,255,255,.5); font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; writing-mode: vertical-rl; }
+
+    .ticker { background: var(--lime); color: var(--navy); overflow: hidden; white-space: nowrap; padding: 13px 0; font-size: .75rem; font-weight: 900; letter-spacing: .17em; text-transform: uppercase; }
+    .ticker-track { display: flex; width: max-content; animation: ticker 32s linear infinite; }
+    .ticker-track span { padding: 0 28px; }
+    .ticker-track span::after { content: "✳"; margin-left: 56px; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    section { padding: 112px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 48px; }
+    .section-head h2 { margin: 12px 0 0; max-width: 670px; font-size: clamp(2.5rem, 5.2vw, 4.8rem); line-height: .98; letter-spacing: -.065em; }
+    .section-note { max-width: 340px; margin: 0 0 4px; color: var(--muted); font-size: .93rem; line-height: 1.75; }
+    .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 8vw; align-items: start; }
+    .about-stamp { min-height: 325px; display: flex; flex-direction: column; justify-content: space-between; padding: 30px; border-radius: var(--radius); background: var(--navy); color: white; position: relative; overflow: hidden; }
+    .about-stamp::after { content: "VK"; position: absolute; right: -22px; bottom: -75px; font-size: 15rem; line-height: 1; color: rgba(255,255,255,.045); font-weight: 900; letter-spacing: -.1em; }
+    .stamp-top { color: var(--lime); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 850; }
+    .stamp-quote { position: relative; z-index: 1; max-width: 300px; margin: 44px 0 0; font-size: clamp(1.65rem, 3vw, 2.6rem); line-height: 1.13; letter-spacing: -.05em; font-weight: 750; }
+    .stamp-bottom { position: relative; z-index: 1; display: flex; justify-content: space-between; color: rgba(255,255,255,.54); font-size: .75rem; }
+    .about-copy p { margin: 0 0 19px; color: #48566a; font-size: 1.02rem; line-height: 1.9; }
+    .about-copy p:first-child { color: var(--ink); font-size: 1.17rem; font-weight: 560; }
+    .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 30px; }
+    .principle { padding: 16px; border: 1px solid var(--line); border-radius: 15px; }
+    .principle b { display: block; font-size: .86rem; }
+    .principle span { color: var(--muted); font-size: .74rem; }
+
+    .numbers { padding: 0 0 104px; }
+    .number-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .number-card { padding: 27px 22px 29px; border-right: 1px solid var(--line); }
+    .number-card:last-child { border-right: 0; }
+    .number { display: block; font-size: clamp(2.3rem, 4vw, 3.6rem); font-weight: 850; line-height: 1; letter-spacing: -.07em; }
+    .number-label { display: block; margin-top: 10px; color: var(--muted); font-size: .78rem; }
+
+    .dark-section { background: var(--navy); color: white; }
+    .dark-section .eyebrow { color: var(--lime); }
+    .dark-section .section-note { color: rgba(255,255,255,.57); }
+    .dark-section .section-head h2 { color: white; }
+    .education-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .edu-card { min-height: 225px; padding: 29px; border: 1px solid rgba(255,255,255,.13); border-radius: var(--radius); background: rgba(255,255,255,.035); position: relative; overflow: hidden; }
+    .edu-card::after { content: ""; position: absolute; width: 170px; height: 170px; right: -75px; bottom: -95px; border: 1px solid rgba(215,251,113,.2); border-radius: 50%; box-shadow: 0 0 0 26px rgba(215,251,113,.025), 0 0 0 52px rgba(215,251,113,.02); }
+    .edu-period { color: var(--lime); font-size: .76rem; letter-spacing: .12em; font-weight: 850; text-transform: uppercase; }
+    .edu-card h3 { margin: 26px 0 7px; font-size: 1.35rem; letter-spacing: -.035em; }
+    .edu-card p { margin: 0; color: rgba(255,255,255,.6); font-size: .9rem; }
+    .edu-score { display: inline-flex; margin-top: 18px; padding: 6px 10px; background: rgba(215,251,113,.12); border-radius: 7px; color: var(--lime); font-size: .76rem; font-weight: 800; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+    .skill-card { min-height: 205px; padding: 24px; border: 1px solid var(--line); border-radius: 19px; background: rgba(255,255,255,.45); transition: transform .25s, box-shadow .25s, background .25s; }
+    .skill-card:hover { transform: translateY(-5px); background: var(--white); box-shadow: var(--shadow); }
+    .skill-icon { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 30px; border-radius: 12px; background: var(--navy); color: var(--lime); font-size: 1.05rem; }
+    .skill-card h3 { margin: 0 0 8px; font-size: 1.02rem; letter-spacing: -.025em; }
+    .skill-card p { margin: 0; color: var(--muted); font-size: .8rem; line-height: 1.7; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+    .tag { padding: 7px 11px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-2); font-size: .73rem; font-weight: 700; }
+
+    .projects { background: var(--paper-2); }
+    .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .project-card { min-height: 315px; display: flex; flex-direction: column; padding: 28px; border-radius: var(--radius); background: var(--white); border: 1px solid rgba(16,26,43,.07); transition: transform .25s, box-shadow .25s; }
+    .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .project-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .project-icon { width: 47px; height: 47px; display: grid; place-items: center; border-radius: 14px; background: var(--navy); color: var(--lime); font-size: 1.2rem; }
+    .status { font-size: .68rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; color: #526173; padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; }
+    .project-card h3 { margin: 30px 0 9px; font-size: 1.55rem; letter-spacing: -.045em; }
+    .project-card p { max-width: 520px; margin: 0; color: var(--muted); font-size: .89rem; line-height: 1.8; }
+    .project-foot { margin-top: auto; padding-top: 25px; color: #8390a0; font-size: .73rem; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; }
+
+    .achievements-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 8vw; align-items: start; }
+    .achievement-intro { position: sticky; top: 115px; }
+    .achievement-intro h2 { margin: 13px 0 18px; font-size: clamp(2.7rem, 5vw, 4.6rem); line-height: .98; letter-spacing: -.065em; }
+    .achievement-intro p { color: var(--muted); max-width: 320px; line-height: 1.8; }
+    .achievement-list { border-top: 1px solid var(--line); }
+    .achievement { display: grid; grid-template-columns: 58px 1fr; gap: 20px; padding: 27px 0; border-bottom: 1px solid var(--line); }
+    .achievement-no { color: #9ba5b0; font-size: .78rem; font-weight: 850; }
+    .achievement h3 { margin: 0 0 7px; font-size: 1.16rem; letter-spacing: -.025em; }
+    .achievement p { margin: 0; color: var(--muted); font-size: .87rem; line-height: 1.75; }
+
+    .contact { padding: 100px 0; background: var(--navy); color: white; position: relative; overflow: hidden; }
+    .contact::before { content: ""; position: absolute; right: -140px; top: -270px; width: 650px; height: 650px; border: 1px solid rgba(119,185,255,.17); border-radius: 50%; box-shadow: 0 0 0 70px rgba(119,185,255,.025), 0 0 0 140px rgba(119,185,255,.02); }
+    .contact-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.1fr .9fr; gap: 8vw; align-items: end; }
+    .contact h2 { max-width: 700px; margin: 14px 0 22px; font-size: clamp(3.3rem, 7vw, 6.4rem); line-height: .93; letter-spacing: -.075em; }
+    .contact h2 span { color: var(--lime); }
+    .contact-copy { max-width: 460px; margin: 0; color: rgba(255,255,255,.59); line-height: 1.8; }
+    .contact-links { border-top: 1px solid rgba(255,255,255,.16); }
+    .contact-link { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 17px 0; border-bottom: 1px solid rgba(255,255,255,.16); color: rgba(255,255,255,.78); font-size: .85rem; transition: color .2s; }
+    .contact-link:hover { color: var(--lime); }
+    .contact-link small { display: block; margin-bottom: 3px; color: rgba(255,255,255,.42); font-size: .67rem; letter-spacing: .13em; text-transform: uppercase; }
+    .contact-link .arrow { font-size: 1.15rem; }
+    footer { padding: 22px 0; background: #07101d; color: rgba(255,255,255,.45); font-size: .72rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .back-top { color: var(--lime); }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
+    @media (max-width: 900px) {
+      .hero { min-height: auto; }
+      .hero-grid { grid-template-columns: 1fr .72fr; gap: 34px; }
+      .portrait-frame { width: min(100%, 300px); }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid, .achievements-grid { gap: 42px; }
+      .achievement-intro { position: static; }
+    }
+    @media (max-width: 680px) {
+      .wrap { width: min(var(--max), calc(100% - 34px)); }
+      .nav { height: 68px; }
+      .menu-toggle { display: grid; place-items: center; }
+      .nav-links { display: none; position: absolute; top: 68px; left: 17px; right: 17px; padding: 18px; border: 1px solid rgba(255,255,255,.13); border-radius: 18px; background: rgba(10,20,36,.98); flex-direction: column; align-items: stretch; gap: 0; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 5px; }
+      .nav-cta { text-align: center; margin-top: 8px; }
+      .hero { padding: 120px 0 72px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-copy { max-width: 530px; }
+      .hero-visual { margin: 18px 0 10px; }
+      .portrait-frame { width: min(72%, 275px); }
+      .portrait-tag { left: -22px; bottom: 40px; }
+      h1 { font-size: clamp(3.6rem, 18vw, 5.8rem); }
+      section { padding: 78px 0; }
+      .section-head { display: block; margin-bottom: 32px; }
+      .section-note { margin-top: 18px; }
+      .about-grid, .achievements-grid, .contact-grid { grid-template-columns: 1fr; }
+      .about-stamp { min-height: 270px; }
+      .principles { grid-template-columns: 1fr; }
+      .number-grid { grid-template-columns: repeat(2, 1fr); }
+      .number-card:nth-child(2) { border-right: 0; }
+      .number-card:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .education-grid, .project-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; gap: 9px; }
+      .skill-card { padding: 18px; min-height: 190px; }
+      .skill-icon { margin-bottom: 22px; }
+      .contact { padding: 80px 0; }
+      .contact h2 { font-size: clamp(3.2rem, 16vw, 5.4rem); }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 390px) { .skills-grid { grid-template-columns: 1fr; } .hero-actions .btn { width: 100%; } }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Vijay Kashyap home"><span class="brand-mark">VK</span><span>VIJAY KASHYAP C</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about">About</a><a href="#education">Education</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#journey">Journey</a><a class="nav-cta" href="#contact">Let's connect ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-content reveal">
+          <div class="availability"><span class="availability-dot"></span> Based in Bengaluru, India</div>
+          <span class="eyebrow">Computer Science Engineering · Curious by nature</span>
+          <h1>Vijay<br/><span class="accent">Kashyap.</span></h1>
+          <p class="hero-copy">I’m a Computer Science Engineering student interested in the space where <strong>technology, analytical thinking, and real-world problem solving</strong> meet. I like learning by building, questioning how things work, and turning ideas into something useful.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">Explore my work <span>↘</span></a>
+            <a class="btn btn-ghost" href="assets/Vijay-Kashyap-Resume.pdf" download>Download résumé <span>↓</span></a>
+          </div>
+          <div class="hero-meta"><span>⌁ <b>Computer Science</b></span><span>⌁ <b>Markets & risk</b></span><span>⌁ <b>Builder mindset</b></span></div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="portrait-frame">
+            <img src="assets/vijay-profile.jpg" alt="Portrait of Vijay Kashyap C" />
+            <div class="portrait-tag">Discipline today.<br/>Success tomorrow.</div>
+            <div class="orbit-label">Learn · Build · Evolve</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Technology</span><span>Analytical thinking</span><span>Financial markets</span><span>Creative editing</span><span>Leadership</span><span>Continuous learning</span><span>Technology</span><span>Analytical thinking</span><span>Financial markets</span><span>Creative editing</span><span>Leadership</span><span>Continuous learning</span></div></div>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head reveal"><div><span class="eyebrow">A little about me</span><h2>More than a<br/>course or a title.</h2></div><p class="section-note">A mix of curiosity, consistency, competition, and a genuine interest in how ideas become real things.</p></div>
+        <div class="about-grid">
+          <div class="about-stamp reveal"><span class="stamp-top">The way I see it</span><p class="stamp-quote">“Stay curious. Stay disciplined. Keep moving forward.”</p><div class="stamp-bottom"><span>PERSONAL PHILOSOPHY</span><span>01 / 04</span></div></div>
+          <div class="about-copy reveal">
+            <p>I’m Vijay Kashyap C, a Computer Science Engineering student at CMR University, Bengaluru. I’m drawn to technology, markets, and the challenge of solving problems with a clear head.</p>
+            <p>Outside the classroom, I’ve spent time learning about trading, market psychology, technical analysis, and risk management. Sports and karate have also shaped the way I approach setbacks: stay focused, work consistently, and respect the process.</p>
+            <p>I enjoy creative editing too, especially the storytelling side of it. Right now, I’m exploring ideas across software, AI, and product building—learning one project at a time.</p>
+            <div class="principles"><div class="principle"><b>Think clearly</b><span>Analysis before action</span></div><div class="principle"><b>Build steadily</b><span>Progress over noise</span></div><div class="principle"><b>Stay adaptable</b><span>Always keep learning</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="numbers"><div class="wrap number-grid reveal">
+      <div class="number-card"><span class="number">8.5</span><span class="number-label">Current SGPA · CMR University</span></div>
+      <div class="number-card"><span class="number">96.32%</span><span class="number-label">High school percentage</span></div>
+      <div class="number-card"><span class="number">3 yrs</span><span class="number-label">Independent trading study</span></div>
+      <div class="number-card"><span class="number">3rd</span><span class="number-label">National-level karate placement</span></div>
+    </div></div>
+
+    <section class="dark-section" id="education">
+      <div class="wrap">
+        <div class="section-head reveal"><div><span class="eyebrow">Education</span><h2>Learning is a<br/>long game.</h2></div><p class="section-note">Building a foundation in computer science while staying curious about the world beyond the syllabus.</p></div>
+        <div class="education-grid">
+          <article class="edu-card reveal"><span class="edu-period">2025 — 2029 · Ongoing</span><h3>CMR University, Bengaluru</h3><p>Bachelor of Engineering (B.E.) in Computer Science Engineering</p><span class="edu-score">SGPA · 8.5</span></article>
+          <article class="edu-card reveal"><span class="edu-period">High school</span><h3>Secondary Education</h3><p>Academic foundation with a strong result in school-level studies.</p><span class="edu-score">96.32%</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head reveal"><div><span class="eyebrow">What I bring</span><h2>Skills I’m growing<br/>every day.</h2></div><p class="section-note">A practical mix of technical foundations, analytical interests, and people skills. I’m always working to deepen the fundamentals.</p></div>
+        <div class="skills-grid">
+          <article class="skill-card reveal"><span class="skill-icon">⌘</span><h3>Programming</h3><p>Building core coding confidence and learning to think through problems step by step.</p></article>
+          <article class="skill-card reveal"><span class="skill-icon">◫</span><h3>Computer Science</h3><p>Foundational understanding of data structures, logic, and problem solving.</p></article>
+          <article class="skill-card reveal"><span class="skill-icon">↗</span><h3>Markets & Analysis</h3><p>Independent study of market behaviour, technical analysis, and risk management.</p></article>
+          <article class="skill-card reveal"><span class="skill-icon">✳</span><h3>Creative Editing</h3><p>Video editing with an interest in storytelling, pacing, transitions, and sound.</p></article>
+        </div>
+        <div class="skill-tags reveal"><span class="tag">Python</span><span class="tag">C Programming</span><span class="tag">Data Structures · Basics</span><span class="tag">Problem Solving</span><span class="tag">Technical Analysis</span><span class="tag">Risk Management</span><span class="tag">MS Office</span><span class="tag">Video Editing</span><span class="tag">Leadership</span><span class="tag">Communication</span><span class="tag">Team Collaboration</span><span class="tag">Adaptability</span><span class="tag">Strategic Thinking</span><span class="tag">Discipline & Consistency</span><span class="tag">Time Management</span><span class="tag">Entrepreneurship</span><span class="tag">Sports & Fitness</span><span class="tag">English</span><span class="tag">Hindi</span><span class="tag">Kannada</span></div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="wrap">
+        <div class="section-head reveal"><div><span class="eyebrow">Selected work & ideas</span><h2>Ideas worth<br/>building.</h2></div><p class="section-note">A selection of projects, explorations, and concepts I’ve worked on or am developing. Status labels are intentional—no inflated claims.</p></div>
+        <div class="project-grid">
+          <article class="project-card reveal"><div class="project-top"><span class="project-icon">◇</span><span class="status">In development</span></div><h3>AEGIS</h3><p>An AI-assisted financial scam and fraud detection concept focused on analysing risk signals and surfacing useful alerts. Exploring how data and explainable risk indicators can help people make safer decisions.</p><div class="project-foot">AI · Financial safety · Risk intelligence</div></article>
+          <article class="project-card reveal"><div class="project-top"><span class="project-icon">▣</span><span class="status">In development</span></div><h3>VISTA</h3><p>A personal operating-system project exploring the foundations of a focused, modern computing experience. A space to learn more about systems, interfaces, and how software fits together.</p><div class="project-foot">Operating systems · Software · Interface design</div></article>
+          <article class="project-card reveal"><div class="project-top"><span class="project-icon">✧</span><span class="status">Product concept</span></div><h3>Vediq Planner</h3><p>An event-planning marketplace concept intended to bring event requirements and planning services into one organised experience.</p><div class="project-foot">Product thinking · Marketplace · Entrepreneurship</div></article>
+          <article class="project-card reveal"><div class="project-top"><span class="project-icon">◉</span><span class="status">Independent study</span></div><h3>Trading Analysis & Market Study</h3><p>Self-directed study of market psychology, price action, technical indicators, strategy testing, and disciplined risk management.</p><div class="project-foot">Market research · Technical analysis · Risk</div></article>
+          <article class="project-card reveal"><div class="project-top"><span class="project-icon">▶</span><span class="status">Creative work</span></div><h3>Video Editing & Creative Content</h3><p>Edited cinematic and engaging content while exploring storytelling, transitions, sound design, and social-media-ready formats.</p><div class="project-foot">Editing · Storytelling · Creative content</div></article>
+          <article class="project-card reveal"><div class="project-top"><span class="project-icon">⌁</span><span class="status">Continuous learning</span></div><h3>Learning in Public</h3><p>Continuously exploring programming, AI, technical tools, and new ways to turn a question or rough idea into a working experiment.</p><div class="project-foot">Computer science · AI · Experimentation</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey">
+      <div class="wrap achievements-grid">
+        <div class="achievement-intro reveal"><span class="eyebrow">Beyond academics</span><h2>Built by<br/>the journey.</h2><p>Competition and team experiences have taught me preparation, resilience, responsibility, and how to keep showing up.</p></div>
+        <div class="achievement-list">
+          <article class="achievement reveal"><span class="achievement-no">01 / 03</span><div><h3>Sports Captain</h3><p>Led school teams in inter-school competitions, helping motivate teammates and develop team strategies.</p></div></article>
+          <article class="achievement reveal"><span class="achievement-no">02 / 03</span><div><h3>District-Level Player</h3><p>Participated in district-level sports competitions, building determination, teamwork, and a competitive mindset.</p></div></article>
+          <article class="achievement reveal"><span class="achievement-no">03 / 03</span><div><h3>National-Level Karate — 3rd Place</h3><p>Earned third place in a national-level karate championship—an achievement that strengthened focus, discipline, and resilience.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div class="reveal"><span class="eyebrow">Have something in mind?</span><h2>Let's make<br/><span>something matter.</span></h2><p class="contact-copy">Whether it’s a project, an idea, a collaboration, or simply a good conversation about technology and building things, I’d be glad to connect.</p></div>
+        <div class="contact-links reveal">
+          <a class="contact-link" href="mailto:Vksjc1602@gmail.com"><span><small>Email</small>Vksjc1602@gmail.com</span><span class="arrow">↗</span></a>
+          <a class="contact-link" href="tel:+919353726805"><span><small>Phone</small>+91 93537 26805</span><span class="arrow">↗</span></a>
+          <a class="contact-link" href="https://www.linkedin.com/in/vijay-kashyap-583690392" target="_blank" rel="noopener noreferrer"><span><small>LinkedIn</small>Connect professionally</span><span class="arrow">↗</span></a>
+          <a class="contact-link" href="assets/Vijay-Kashyap-Resume.pdf" download><span><small>Résumé</small>Download PDF</span><span class="arrow">↓</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span>© <span id="year"></span> Vijay Kashyap C. Built with curiosity and consistency.</span><a class="back-top" href="#top">Back to top ↑</a></div></footer>
+
+  <script>
+    const header = document.querySelector('.site-header');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const closeMenu = () => { navLinks.classList.remove('open'); menuToggle.setAttribute('aria-expanded', 'false'); menuToggle.setAttribute('aria-label', 'Open navigation'); menuToggle.textContent = '☰'; };
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      menuToggle.textContent = open ? '×' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 24), { passive: true });
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

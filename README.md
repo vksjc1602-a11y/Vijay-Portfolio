@@ -12,32 +12,26 @@ https://vijaykashyapc.netlify.app
 Vijay-Portfolio/
 ├── index.html
 ├── README.md
-├── .gitignore
-└── assets/
-    ├── vijay-profile.jpg
-    └── Vijay-Kashyap-Resume.pdf
+└── .gitignore
 ```
 
 ## Run locally
 
-No build step is required. Keep `index.html` and the `assets/` directory together, then open `index.html` in a browser.
-
-Alternatively, from this directory run:
-
-```bash
-python3 -m http.server 8000
-```
-
-Then visit http://localhost:8000.
+Open `index.html` in a browser. The profile image and résumé download are linked to the public Netlify deployment so the page can display them when viewed locally.
 
 ## Deployment
 
-This is a static website and can be deployed with Netlify, GitHub Pages, or another static host. The site uses `index.html` as its entry point.
+This is a static website with no build step. Deploy the repository root with Netlify or another static hosting provider. The entry point is `index.html`.
+
+## Public assets
+
+- Profile image: https://vijaykashyapc.netlify.app/assets/vijay-profile.jpg
+- Résumé PDF: https://vijaykashyapc.netlify.app/assets/Vijay-Kashyap-Resume.pdf
+
+**Note:** The source files are committed here. The binary profile image and résumé PDF are currently served from the existing Netlify deployment rather than stored as Git blobs. The résumé remains publicly accessible at the link above.
 
 ## Security
 
-Do not commit API keys, access tokens, passwords, private keys, or real `.env` files. The `.gitignore` excludes common secret and local-development files. The résumé PDF and profile image are intentionally included as requested and will be publicly accessible in this public repository.
+The `.gitignore` excludes common environment files, credentials, private keys, dependencies, local editor settings, and build output. Never commit API keys, access tokens, passwords, or real `.env` files.
 
-## Project status
-
-Some listed projects may be works in progress or concepts. Refer to the labels on the website for their current status.
+Some projects shown on the website are concepts or works in progress; their status labels are intentionally conservative.
